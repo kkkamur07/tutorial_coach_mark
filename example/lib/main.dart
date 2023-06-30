@@ -5,6 +5,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
+// Added current Focus in Tutorial Coach Mark controller.
+// Now you will be able to set your desired focus on the list.
+
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -232,6 +235,7 @@ class MyHomePageState extends State<MyHomePage> {
       textSkip: "SKIP",
       paddingFocus: 10,
       opacityShadow: 0.5,
+      currentFocus: 0,
       imageFilter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
       onFinish: () {
         print("finish");
