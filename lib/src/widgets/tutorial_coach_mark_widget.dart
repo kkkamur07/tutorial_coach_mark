@@ -8,10 +8,14 @@ import 'package:tutorial_coach_mark/src/target/target_position.dart';
 import 'package:tutorial_coach_mark/src/util.dart';
 import 'package:tutorial_coach_mark/src/widgets/animated_focus_light.dart';
 
+// Added current focus in the Animated focus light widget's constructor
+// So that it passes on to the AnimatedFocusLightState widget where _currentFocus is there.
+
 class TutorialCoachMarkWidget extends StatefulWidget {
   const TutorialCoachMarkWidget({
     Key? key,
     required this.targets,
+    required this.currentFocus,
     this.finish,
     this.paddingFocus = 10,
     this.clickTarget,
@@ -59,6 +63,7 @@ class TutorialCoachMarkWidget extends StatefulWidget {
   final bool rootOverlay;
   final bool showSkipInLastTarget;
   final ImageFilter? imageFilter;
+  final int currentFocus;
 
   @override
   TutorialCoachMarkWidgetState createState() => TutorialCoachMarkWidgetState();
@@ -77,6 +82,7 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget>
       child: Stack(
         children: <Widget>[
           AnimatedFocusLight(
+            currentFocus: widget.currentFocus,
             key: _focusLightKey,
             targets: widget.targets,
             finish: widget.finish,

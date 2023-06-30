@@ -10,6 +10,10 @@ import 'package:tutorial_coach_mark/src/target/target_focus.dart';
 import 'package:tutorial_coach_mark/src/target/target_position.dart';
 import 'package:tutorial_coach_mark/src/util.dart';
 
+// Getting the current Focus set by user here
+// Passing on the current Focus to _currentFocus while initializing the widget
+// Works well
+
 class AnimatedFocusLight extends StatefulWidget {
   final List<TargetFocus> targets;
   final Function(TargetFocus)? focus;
@@ -29,10 +33,12 @@ class AnimatedFocusLight extends StatefulWidget {
   final bool pulseEnable;
   final bool rootOverlay;
   final ImageFilter? imageFilter;
+  final int currentFocus;
 
   const AnimatedFocusLight({
     Key? key,
     required this.targets,
+    required this.currentFocus,
     this.focus,
     this.finish,
     this.removeFocus,
@@ -78,6 +84,7 @@ abstract class AnimatedFocusLightState extends State<AnimatedFocusLight>
   @override
   void initState() {
     super.initState();
+    _currentFocus = widget.currentFocus;
     _targetFocus = widget.targets[_currentFocus];
     _controller = AnimationController(
       vsync: this,

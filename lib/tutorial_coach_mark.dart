@@ -13,6 +13,10 @@ export 'package:tutorial_coach_mark/src/target/target_focus.dart';
 export 'package:tutorial_coach_mark/src/target/target_position.dart';
 export 'package:tutorial_coach_mark/src/util.dart';
 
+// Added current focus in the constructor itself
+// Added current focus in the tutorial coach mark widget
+// Current focus is being passed on to the animated focus light widget
+
 class TutorialCoachMark {
   final List<TargetFocus> targets;
   final FutureOr<void> Function(TargetFocus)? onClickTarget;
@@ -36,11 +40,13 @@ class TutorialCoachMark {
   final Widget? skipWidget;
   final bool showSkipInLastTarget;
   final ImageFilter? imageFilter;
+  final int currentFocus;
 
   OverlayEntry? _overlayEntry;
 
   TutorialCoachMark({
     required this.targets,
+    this.currentFocus = 0,
     this.colorShadow = Colors.black,
     this.onClickTarget,
     this.onClickTargetWithTapPosition,
@@ -66,6 +72,7 @@ class TutorialCoachMark {
     return OverlayEntry(
       builder: (context) {
         return TutorialCoachMarkWidget(
+          currentFocus: currentFocus,
           key: _widgetKey,
           targets: targets,
           clickTarget: onClickTarget,
